@@ -1,0 +1,153 @@
+var coldWarTeam = [
+ {"name": "Ismum", "weapon": "Krig", skill: 92}, 
+ {"name": "Injam", "weapon": "AK 74u", skill: 84}, 
+ {"name": "Afnan", "weapon": "AUG", skill: 73}, 
+ {"name": "Nawal", "weapon": "XM4", skill: 62}, 
+ {"name": "Shezan", "weapon": "FFAR", skill: 42}, 
+]
+
+function rank(arr) {
+  let len = arr.length; 
+  for(i =0 ; i< len; i++){ 
+      if(arr[i].skill > 90) { 
+          arr[i].rank = "A";
+          console.log(arr[i].name + ' is CDL Pro')
+      }
+      else if(arr[i].skill > 80) { 
+         console.log(arr[i].name + ' is a Beast')
+         arr[i].rank = "B";
+    } 
+      else if(arr[i].skill > 70) { 
+          console.log(arr[i].name+ ' is Good')
+          arr[i].rank = "C";
+      } 
+      else if(arr[i].skill > 60) { 
+          console.log(arr[i].name + ' could Improve')
+          arr[i].rank = "D";
+      }
+      else  {
+          console.log(arr[i].name + ' should Try Fortnite')
+          arr[i].rank = "E";
+      }
+  }
+}
+
+rank(coldWarTeam) 
+
+function rankPlayer (player) {
+    if (player.rank === "A"){ 
+        player.prestige = 2;
+    }
+    else if (player.rank === "B" ||player.rank === "C" ) {
+         player.prestige = 1; 
+    }
+    else { 
+        player.prestige = 0; 
+    }
+}
+
+var Ismum  = coldWarTeam[0]; 
+var Injam = coldWarTeam[1];
+rankPlayer(Ismum); 
+rankPlayer(Injam); 
+
+console.log(coldWarTeam)
+
+//Spread Operator Examples 
+
+var [a,b] = [10,11];
+console.log(a,b);
+
+var [d, ,e] = [1,12,13];
+
+var a =12 , b=15; 
+
+[a,b] = [b,a]; 
+
+console.log (a,b)
+
+//list transformations 
+
+function weapon(name,type,ammo) {
+    this.name = name; 
+    this.type = type;
+    this.ammo = ammo || 32; // 32 is defaulted
+}
+
+var ak47 = new weapon ('ak47','AR',30);
+console.log(ak47.name, ' ', ak47.type, ' ', ak47.ammo)
+
+weapon.prototype.nameofWeapon = function () {
+    console.log("The name of the weapon is " + this.name)
+}
+
+ak47.nameofWeapon();
+
+
+//building constructor 
+
+function Building (type,floors) {
+        type = this.type || 'Building', 
+        floors = this.floors
+}
+
+var logcabin = new Building('log cabin',1); 
+var EmpireStateBuilding = new Building('sky-scaper',102)
+
+Building.prototype.countFloors = function () {
+    console.log('This building has ',this.floors,'floors')
+}
+var Stack = function() {
+  this.storage = "";
+  this.size = 0;
+}
+
+Stack.prototype.push = function(val) {
+  this.size++;
+  this.storage += "**" + val;
+}
+Stack.prototype.pop = function() {
+  this.size--;
+  var lastIndex = this.storage.lastIndexOf("**");
+  this.storage = this.storage.slice(0, lastIndex);
+}
+
+Stack.prototype.stackContents = function() {
+  console.log(this.storage)
+}
+
+Stack.prototype.size = function() {
+  return this.size;
+}
+
+var homies = new Stack();
+
+homies.push('Ismum');
+homies.push('Afnan');
+homies.push('Injam');
+homies.push('Rafi');
+
+
+homies.stackContents();
+
+homies.pop();
+
+homies.stackContents();
+
+var timesCalled = 0
+
+var recursiveFunction = function () {
+    timesCalled++;
+    if(timesCalled === 3){
+        return "the function is finished"
+    }
+    else{
+        return recursiveFunction()
+    }
+    
+}
+
+
+
+
+
